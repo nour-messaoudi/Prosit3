@@ -1,35 +1,19 @@
-import java.util.Scanner;
-
 public class ZooManagement {
-
-    int nbrCages;
-    String zooName;
-
     public static void main(String[] args) {
-        ZooManagement zoo = new ZooManagement();
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Veuillez entrer le nom du zoo : ");
-        zoo.zooName = scanner.nextLine().trim();
-        while (zoo.zooName.isEmpty()) {
-            System.out.print("Nom du zoo invalide. Veuillez réessayer : ");
-            zoo.zooName = scanner.nextLine().trim();
-        }
 
-        System.out.print("Veuillez entrer le nombre de cages : ");
-        while (!scanner.hasNextInt()) {
-            System.out.print("Entrée invalide. Veuillez entrer un nombre entier pour le nombre de cages : ");
-            scanner.next();
-        }
-        zoo.nbrCages = scanner.nextInt();
-        while (zoo.nbrCages <= 0) {
-            System.out.print("Le nombre de cages doit être un entier positif. Veuillez réessayer : ");
-            while (!scanner.hasNextInt()) {
-                System.out.print("Entrée invalide. Veuillez entrer un nombre entier : ");
-                scanner.next();
-            }
-            zoo.nbrCages = scanner.nextInt();
-        }
-        System.out.println(zoo.zooName + " comporte " + zoo.nbrCages + " cages");
-        scanner.close();
+        Animal lion = new Animal("Felidae", "Lion", 5, true);
+        Animal tiger = new Animal("Felidae", "Tiger", 4, true);
+        Animal elephant = new Animal("Elephantidae", "Elephant", 10, true);
+
+        Zoo zoo1 = new Zoo("Zoo 1", "Paris");
+        Zoo zoo2 = new Zoo("Zoo 2", "London");
+
+        zoo1.addAnimal(lion);
+        zoo1.addAnimal(tiger);
+
+        zoo2.addAnimal(elephant);
+
+        Zoo largestZoo = Zoo.comparerZoo(zoo1, zoo2);
+        System.out.println("Le zoo avec le plus d'animaux est : " + largestZoo.name + " avec " + largestZoo.animalCount + " animaux.");
     }
 }
